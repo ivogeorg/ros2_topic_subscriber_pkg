@@ -22,4 +22,17 @@ if(BUILD_TESTING)
   ament_lint_auto_find_test_dependencies()
 endif()
 
+add_executable(simple_subscriber_node src/simple_topic_subscriber.cpp)
+ament_target_dependencies(simple_subscriber_node rclcpp std_msgs)
+
+install(TARGETS
+	simple_subscriber_node
+	DESTINATION lib/${PROJECT_NAME}
+)
+
+install(DIRECTORY
+	launch
+	DESTINATION share/${PROJECT_NAME}
+)
+
 ament_package()
