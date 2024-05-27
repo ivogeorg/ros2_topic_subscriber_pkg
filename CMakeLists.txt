@@ -9,6 +9,7 @@ endif()
 find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
+find_package(nav_msgs REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -25,8 +26,12 @@ endif()
 add_executable(simple_subscriber_node src/simple_topic_subscriber.cpp)
 ament_target_dependencies(simple_subscriber_node rclcpp std_msgs)
 
+add_executable(odometry_subscriber_node src/sub_odom.cpp)
+ament_target_dependencies(odometry_subscriber_node rclcpp nav_msgs)
+
 install(TARGETS
 	simple_subscriber_node
+	odometry_subscriber_node
 	DESTINATION lib/${PROJECT_NAME}
 )
 
