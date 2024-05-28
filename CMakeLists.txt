@@ -10,6 +10,7 @@ find_package(ament_cmake REQUIRED)
 find_package(rclcpp REQUIRED)
 find_package(std_msgs REQUIRED)
 find_package(nav_msgs REQUIRED)
+find_package(sensor_msgs REQUIRED)
 
 if(BUILD_TESTING)
   find_package(ament_lint_auto REQUIRED)
@@ -29,9 +30,13 @@ ament_target_dependencies(simple_subscriber_node rclcpp std_msgs)
 add_executable(odometry_subscriber_node src/sub_odom.cpp)
 ament_target_dependencies(odometry_subscriber_node rclcpp nav_msgs)
 
+add_executable(laser_scan_subscriber_node src/sub_scan.cpp)
+ament_target_dependencies(laser_scan_subscriber_node rclcpp sensor_msgs)
+
 install(TARGETS
 	simple_subscriber_node
 	odometry_subscriber_node
+	laser_scan_subscriber_node
 	DESTINATION lib/${PROJECT_NAME}
 )
 
